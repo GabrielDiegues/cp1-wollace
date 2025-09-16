@@ -11,10 +11,11 @@
 
 | Nome | RM |
 |------|-----|
-| [Nome do Integrante 1] | [RM] |
-| [Nome do Integrante 2] | [RM] |
-| [Nome do Integrante 3] | [RM] |
-| [Nome do Integrante 4] | [RM] |
+| Bernardo Pinto Rocha | 99209 |
+| Gabriel Diegues | 550788 |
+| Luiza Cristina | 99367 |
+| Pedro Palladino | 551180 |
+| Renato Izumi | 99242 |
 
 ## 📝 Descrição do Projeto
 
