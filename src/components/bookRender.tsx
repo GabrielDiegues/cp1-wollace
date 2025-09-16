@@ -25,7 +25,8 @@ export default function BookRender({book}: {book: Book}) {
       student.borrowedBooks.push(book);
       try{
         await api.patch(`/books/borrow?id=${book.id}`);
-        //await api.patch("/students/addBook", student.borrowedBooks)
+        await api.patch("/students/addBook", student);
+        screenAlert("Book borrowed", "Book has been borrowed successfuly");
       }
       catch(error) {
         checkApiErrors(error, "Book borrowing error", "Please, try again later");
