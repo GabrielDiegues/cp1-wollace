@@ -1,0 +1,1 @@
+export {Book, Student} from "./types"
