@@ -7,7 +7,7 @@
 **Tipo:** Checkpoint - Integração com API  
 **Tecnologia:** React Native + Expo + TypeScript  
 
-## 👥 Integrantes da Equipe
+## 👥 Integrantes da turma 3ESPG
 
 | Nome | RM |
 |------|-----|
