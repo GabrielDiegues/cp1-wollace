@@ -31,10 +31,10 @@ export async function POST(request: Request): Promise<Response> {
     studentsData.push(newStudent)
     await fs.writeFile(STUDENTS_FILE_PATH, JSON.stringify(studentsData, null, 2));
     
-    return new Response(`User resgisted with success`, {
+    return new Response(JSON.stringify(newStudent), {
         status: 201,
         headers: {
-            "Content-Type": "text/plain",
+            "Content-Type": "application/json",
         },
     })
 }

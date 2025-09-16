@@ -11,7 +11,7 @@ interface Student {
     id: number;
     userName: string;
     password: string;
-    borrowedBooks: Omit<Book, "borrowed">[];
+    borrowedBooks: Book[];
 }
 
 

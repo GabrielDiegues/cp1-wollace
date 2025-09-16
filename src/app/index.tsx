@@ -23,15 +23,28 @@ export default function Login() {
   let isDisabled = (!student.userName || !student.password) || isLoggingIn;
 
   // Inner functions
+  useEffect(() => {
+    const getStudent = async () => {
+      const storedStudent = await AsyncStorage.getItem("student");
+      if(storedStudent) {
+        setStudent(JSON.parse(storedStudent));
+      }
+    }
+    getStudent();
+  }, []);
+
+
   const onChangeText = (propertie: keyof Student) => (newUsername: string) => setStudent(updateStudentProp(propertie, newUsername.trim()))
 
 
   const checkLogin = async () => {
     setIsLoggingIn(true);
     try {
-      await api.post("/students/signIn", student);
-      AsyncStorage.setItem("student", JSON.stringify(student));
-      router.replace('/booksMenu')
+      //console.log(student)
+      const {data} = await api.post<Student>("/students/signIn", student);
+      //console.log(student);
+      await AsyncStorage.setItem("student", JSON.stringify(student));
+      router.push('/booksMenu')
     }
     catch(error) {
       checkApiErrors(error, "Sign in error", "Error signing in, please try again later");
@@ -39,11 +52,12 @@ export default function Login() {
     setIsLoggingIn(false);
   }
 
-
   const createAccount = async() => {
     try {
-      const response = await api.post("/students/createStudent", student);
-      screenAlert("Account creation succeeded", `${response.data}`);
+      const {data} = await api.post<Student>("/students/createStudent", student);
+      console.log(data);
+      setStudent(data);
+      screenAlert("Account creation succeeded", "User resgisted with success");
     }
     catch(error) {
       checkApiErrors(error, "Account creation error", "Error creating the account, please try again later");

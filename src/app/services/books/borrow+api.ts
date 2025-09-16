@@ -13,7 +13,7 @@ export async function PATCH(request: Request): Promise<Response> {
     if(bookId && !isNaN(bookId)) {
         const book = books.find(storedBook => storedBook.id === bookId);
         if(book) {
-            if(book.borrowed === true) {
+            if(book.borrowed) {
                 return new Response("Book is already borrowed", {
                     status: 409,
                     headers: {

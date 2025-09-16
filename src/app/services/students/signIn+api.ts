@@ -13,10 +13,10 @@ export async function POST(request: Request): Promise<Response> {
     const studentsData: Student[] = JSON.parse(data);
 
     if(studentsData.find((storedStudent: Student) => storedStudent.userName === student.userName && storedStudent.password === student.password)) {
-        return new Response("User logged in with success", {
+        return new Response(JSON.stringify(student), {
             status: 200,
             headers: {
-                "Content-Type": "text/plain"
+                "Content-Type": "application/json"
             }
         });
     }

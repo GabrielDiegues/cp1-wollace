@@ -14,7 +14,7 @@ const screenAlert = (title: string, description: string) => {
 
 const checkApiErrors = (error: any, errorTitle: string, serverError: string) => {
     if(isAxiosError(error)) {
-        screenAlert(errorTitle, error.response?.data);
+        screenAlert(errorTitle, error.response?.data || error.message);
     }
     else {
     screenAlert(errorTitle, serverError);

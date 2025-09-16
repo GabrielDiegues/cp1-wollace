@@ -2,14 +2,16 @@ import { Student } from "@/types";
 
 
 
-const DefaultStudent: Omit<Student, "id" | "borrowedBooks"> = {
+const DefaultStudent: Student = {
+    id: 0,
     userName: "",
     password: "",
+    borrowedBooks: [],
 };
 
 
 // Functions
-const updateStudentProp = <K extends keyof Student>(prop: K, value: string) => (prev: typeof DefaultStudent) => ({...prev, [prop]: value}); 
+const updateStudentProp = <K extends keyof Student>(prop: K, value: string) => (prev: Student) => ({...prev, [prop]: value}); 
 
 const getStudent = async (jsonStudent: Request): Promise<Student> => await jsonStudent.json();
 

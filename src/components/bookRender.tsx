@@ -17,27 +17,28 @@ export default function BookRender({book}: {book: Book}) {
   const [isBorrowing, setIsBorrowing] = useState(false);
 
   // Inner functions
-  const borrowBook = async () => {
-    setIsBorrowing(true);
-    const data = await AsyncStorage.getItem("student");
-    const student: Student =  data ? JSON.parse(data) : null;
-    if(student !== null) {
-      student.borrowedBooks.push(book);
-      try{
-        await api.patch(`/books/borrow?id=${book.id}`);
-        await api.patch("/students/addBook", student);
-        screenAlert("Book borrowed", "Book has been borrowed successfuly");
-      }
-      catch(error) {
-        checkApiErrors(error, "Book borrowing error", "Please, try again later");
-      }
-      setIsBorrowing(false)
+const borrowBook = async () => {
+  setIsBorrowing(true);
+  const data = await AsyncStorage.getItem("student");
+  const student: Student =  data ? JSON.parse(data) : null;
+  if(student !== null) {
+    student.borrowedBooks.push(book);
+    try{
+      await api.patch(`/books/borrow?id=${book.id}`);
+      await api.patch("/students/addBook", student);
+      screenAlert("Book borrowed", "Book has been borrowed successfuly");
     }
-    else {
-      screenAlert("Session expired", "Please log in again");
-      router.replace("/");
+    catch(error) {
+      checkApiErrors(error, "Book borrowing error", "Please, try again later");
     }
   }
+  else {
+    screenAlert("Session expired", "Please log in again");
+    router.replace("/");
+  }
+  setIsBorrowing(false); 
+}
+
 
 
   return (
